@@ -18,7 +18,7 @@ class SyncStockFactsFromSource(CommandLineCommand):
         argv = context.argv
 
         try:
-            opts, args = getopt.getopt(argv[1:], "i:", ["input-file="])
+            opts, args = getopt.getopt(argv, "i:", ["input-file="])
         except getopt.GetoptError:
             print('--input-file,-i <input_file_path>')
             sys.exit(2)

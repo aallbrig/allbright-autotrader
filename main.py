@@ -4,22 +4,41 @@ from __future__ import (absolute_import, division, print_function,
 
 import sys
 
-from src.model.command_line.CommandLineContext import CommandLineContext
+from src.model.command_line.CommandLineApp import CommandLineApp
 from src.fact_providers.YahooFinanceStockInfoProvider import YahooFinanceStockInfoProvider
 from src.jobs.SyncStockFactsFromSource import SyncStockFactsFromSource
 from src.jobs.ExecuteTrading import ExecuteTrading
 from src.jobs.SimulateHistoricTrading import SimulateHistoricTrading
+from src.model.command_line.CommandRegistry import CommandRegistry
+
+
+def build_fact_producer_command():
+    yahoo_finance_provider = YahooFinanceStockInfoProvider()
+    return SyncStockFactsFromSource(yahoo_finance_provider)
+
+
+def build_simulator_command():
+    return SimulateHistoricTrading()
+
+
+def build_trader_command():
+    return ExecuteTrading()
+
+
+def build_command_registry() -> CommandRegistry:
+    command_registry = CommandRegistry()
+
+    command_registry.set('job-sync-facts', build_fact_producer_command)
+    command_registry.set('job-simulate-historic-trading', build_simulator_command)
+    command_registry.set('job-execute-trading-strategy', build_trader_command)
+
+    return command_registry
 
 
 def main(argv):
-    possible_subcommand = argv[0]
-    if possible_subcommand == 'job-sync-facts':
-        yahoo_finance_provider = YahooFinanceStockInfoProvider()
-        SyncStockFactsFromSource(yahoo_finance_provider).Execute(CommandLineContext(argv))
-    elif possible_subcommand == 'job-simulate-historic-trading':
-        SimulateHistoricTrading().Execute(CommandLineContext(argv))
-    elif possible_subcommand == 'job-execute-trading-strategy':
-        ExecuteTrading().Execute(CommandLineContext(argv))
+    app = CommandLineApp(build_command_registry())
+    exit_code = app.run(argv)
+    sys.exit(exit_code)
 
 
 if __name__ == '__main__':
