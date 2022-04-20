@@ -1,7 +1,10 @@
-from models.Stock import Stock
+from src.model.Stock import Stock
 
 
-# TODO: Common interface/class should map disparate data sources (like yahoo finance) into a common expected data struct
+# TODO: Common interface/class should map disparate data sources (like yahoo finance)
+#  into a common expected data struct
+from src.model.StockInfoReport import StockInfoReport
+
 
 class ThirdPartyStockInfoProvider:
     _stock_picks: list[Stock]
@@ -14,5 +17,5 @@ class ThirdPartyStockInfoProvider:
     def set_stock_picks(self, stock_picks: list[Stock]):
         self._stock_picks = stock_picks
 
-    def retrieve_stock_info(self):
+    def retrieve_stock_info(self) -> list[StockInfoReport]:
         raise NotImplementedError("Please Implement this method")

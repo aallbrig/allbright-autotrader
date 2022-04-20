@@ -1,4 +1,4 @@
-from models.command_line.CommandLineContext import CommandLineContext
+from src.model.command_line.CommandLineContext import CommandLineContext
 
 
 class CommandLineCommand:

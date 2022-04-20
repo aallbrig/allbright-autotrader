@@ -1,13 +1,13 @@
-import string
-
-from models.Stock import Stock
-from models.fact_providers.ThirdPartyStockInfoProvider import ThirdPartyStockInfoProvider
+from src.model.StockInfoReport import StockInfoReport
+from src.model.fact_providers.ThirdPartyStockInfoProvider import ThirdPartyStockInfoProvider
 
 
 class TestThirdPartyStockInfoProvider(ThirdPartyStockInfoProvider):
-    def __init__(self, list_of_stock_tickers: list[string]):
-        stocks = []
-        for stock_ticker in list_of_stock_tickers:
-            stocks.append(Stock(stock_ticker))
+    stock_info_reports: list[StockInfoReport]
 
-        super().__init__(stocks)
+    def retrieve_stock_info(self) -> list[StockInfoReport]:
+        return self.stock_info_reports
+
+    def __init__(self, stock_info_reports: list[StockInfoReport]):
+        super().__init__([])
+        self.stock_info_reports = stock_info_reports

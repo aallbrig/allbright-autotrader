@@ -1,6 +1,6 @@
 import unittest
 
-from models.Stock import Stock
+from src.model.Stock import Stock
 from src.fact_providers.YahooFinanceStockInfoProvider import YahooFinanceStockInfoProvider
 
 
@@ -10,7 +10,7 @@ class YahooFinanceStockInfoProviderTests(unittest.TestCase):
         sut = YahooFinanceStockInfoProvider(test_stocks)
         results = sut.retrieve_stock_info()
 
-        self.assertIsNot(None, results)
+        self.assertEqual("TSLA", results[0].stock.symbol())
 
 
 if __name__ == '__main__':
