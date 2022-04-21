@@ -9,7 +9,7 @@ from tests._test_fixtures.ThirdPartyStockInfoProvider import TestThirdPartyStock
 class FinancialFactProviderTests(unittest.TestCase):
     def test_financial_fact_provider_can_provide_facts_about_a_stock(self):
         stock_picks = [StockInfoReport(stock) for stock in [Stock(stock_pick) for stock_pick in ["TSLA"]]]
-        sut = FinancialFactProvider(TestThirdPartyStockInfoProvider(stock_picks))
+        sut = FinancialFactProvider(TestThirdPartyStockInfoProvider(stock_info_reports=stock_picks))
 
         results = sut.inform_about_stocks()
 
@@ -17,7 +17,7 @@ class FinancialFactProviderTests(unittest.TestCase):
 
     def test_financial_fact_provider_can_provide_useful_facts_about_a_stock(self):
         stock_picks = [StockInfoReport(stock) for stock in [Stock(stock_pick) for stock_pick in ["TSLA"]]]
-        sut = FinancialFactProvider(TestThirdPartyStockInfoProvider(stock_picks))
+        sut = FinancialFactProvider(TestThirdPartyStockInfoProvider(stock_info_reports=stock_picks))
 
         results = sut.inform_about_stocks()
 

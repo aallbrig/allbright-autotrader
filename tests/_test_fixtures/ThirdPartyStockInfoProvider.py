@@ -1,3 +1,4 @@
+from src.model.Stock import Stock
 from src.model.StockInfoReport import StockInfoReport
 from src.model.fact_providers.ThirdPartyStockInfoProvider import ThirdPartyStockInfoProvider
 
@@ -8,6 +9,6 @@ class TestThirdPartyStockInfoProvider(ThirdPartyStockInfoProvider):
     def retrieve_stock_info(self) -> list[StockInfoReport]:
         return self.stock_info_reports
 
-    def __init__(self, stock_info_reports: list[StockInfoReport]):
-        super().__init__([])
+    def __init__(self, stocks: list[Stock] = [], stock_info_reports: list[StockInfoReport] = []):
+        super().__init__(stocks)
         self.stock_info_reports = stock_info_reports

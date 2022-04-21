@@ -40,6 +40,7 @@ class SyncStockFactsFromSource(CommandLineCommand):
 
         fact_provider = FinancialFactProvider(self.fact_provider)
         results = fact_provider.inform_about_stocks()
-        # move logic of string representation to the stock results
-        # print(results)
+
+        # output string representations to the console
+        [context.command_line.print(f'{stock_info_report}') for stock_info_report in results]
         return 0

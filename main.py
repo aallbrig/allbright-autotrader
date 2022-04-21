@@ -4,6 +4,7 @@ from __future__ import (absolute_import, division, print_function,
 
 import sys
 
+from src.model.command_line.CommandLine import CommandLine
 from src.model.command_line.CommandLineApp import CommandLineApp
 from src.fact_providers.YahooFinanceStockInfoProvider import YahooFinanceStockInfoProvider
 from src.jobs.SyncStockFactsFromSource import SyncStockFactsFromSource
@@ -35,8 +36,14 @@ def build_command_registry() -> CommandRegistry:
     return command_registry
 
 
+class CommandLine(CommandLine):
+
+    def print(self, message: str):
+        print(message)
+
+
 def main(argv):
-    app = CommandLineApp(build_command_registry())
+    app = CommandLineApp(CommandLine(), build_command_registry())
     exit_code = app.run(argv)
     sys.exit(exit_code)
 
