@@ -25,5 +25,8 @@ python3 main.py job-sync-facts -i ./data/STOCKS.txt
 python3 main.py job-simulate-historic-trading -i ./data/STOCKS.txt
 # Based on simulations, trading decisions should be executed
 python3 main.py job-execute-trading-strategy -i ./data/STOCKS.txt
+
+# Run all tests
+python3 -m unittest
 ```
 
