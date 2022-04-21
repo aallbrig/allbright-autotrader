@@ -27,7 +27,7 @@ class CommandCalledTracker:
         self.context = context
 
 
-class CommandLineAppTests(unittest.TestCase):
+class TestCommandLineApp(unittest.TestCase):
     def test_command_line_app_is_configurable(self):
         call_tracker = CommandCalledTracker()
         test_registry = CommandRegistry()

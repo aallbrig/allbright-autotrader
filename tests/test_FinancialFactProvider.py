@@ -1,9 +1,9 @@
 import unittest
 
 from src.model.FinancialFactProvider import FinancialFactProvider
-from src.model import Stock
+from src.model.Stock import Stock
 from src.model.StockInfoReport import StockInfoReport
-from tests.utility.test_ThirdPartyStockInfoProvider import TestThirdPartyStockInfoProvider
+from tests._test_fixtures.ThirdPartyStockInfoProvider import TestThirdPartyStockInfoProvider
 
 
 class FinancialFactProviderTests(unittest.TestCase):

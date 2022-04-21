@@ -15,13 +15,15 @@ class CommandLineApp:
         self._registry = registry
 
     def run(self, argv: list[str]) -> int:
-        # FEATURE_REQUEST: input validation
         maybe_command, command_argv = self._try_find_command(argv)
-        # FEATURE_REQUEST: validate command
-        if maybe_command is not None:
-            return maybe_command.Execute(CommandLineContext(command_argv))
+        # TODO: FEATURE_REQUEST: input validation for user input from the command console
+        # for both valid_command and valid_command_argv
+        valid_command = maybe_command
+        valid_command_argv = command_argv
+        if valid_command is not None:
+            return valid_command.Execute(CommandLineContext(valid_command_argv))
         else:
-            return os.EX_NOTFOUND
+            return 1
 
     def _try_find_command(self, argv: list[str]) -> (Optional[CommandLineCommand], list[str]):
         # walk the argv string list until a valid command is found from the registry

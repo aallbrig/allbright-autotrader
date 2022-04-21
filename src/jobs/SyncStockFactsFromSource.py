@@ -1,5 +1,4 @@
 import getopt
-import sys
 
 from src.model.command_line.CommandLineCommand import CommandLineCommand
 from src.model.FinancialFactProvider import FinancialFactProvider
@@ -21,19 +20,26 @@ class SyncStockFactsFromSource(CommandLineCommand):
             opts, args = getopt.getopt(argv, "i:", ["input-file="])
         except getopt.GetoptError:
             print('--input-file,-i <input_file_path>')
-            sys.exit(2)
+            return 2
         for opt, arg in opts:
             if opt == '-h':
-                print('main.py --input-file ./data/STOCKS.txt')
-                sys.exit()
+                print('--input-file ./data/STOCKS.txt')
+                return 0
             elif opt in ("-i", "--input-file"):
                 self.input_file = arg
 
         if self.input_file is not None:
             with open(self.input_file) as f:
                 target_stocks = [Stock(line.strip()) for line in f.readlines()]
-                self.fact_provider.set_stock_picks(target_stocks)
+                # filter target_stock by if it is valid or not
+                valid_target_stock = target_stocks
+                # check if there is a greater than 0 length of valid target stock
+                # if not, return status code 1
+                # else if length(valid_target_stocks) is greater than 1, proceed with logic
+                self.fact_provider.set_stock_picks(valid_target_stock)
 
         fact_provider = FinancialFactProvider(self.fact_provider)
         results = fact_provider.inform_about_stocks()
-        print(results)
+        # move logic of string representation to the stock results
+        # print(results)
+        return 0
