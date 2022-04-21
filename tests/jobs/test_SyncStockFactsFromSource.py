@@ -23,7 +23,6 @@ class TestSyncStockFactsFromSource(unittest.TestCase):
         self._intercepted_message = message
 
     def test_message_output_when_TSLA_passed_in(self):
-        message = ''
         expected_output_message = 'Stock: TSLA'
         test_input_reports = [StockInfoReport(Stock('TSLA'))]
         test_fact_provider = TestThirdPartyStockInfoProvider(stock_info_reports=test_input_reports)
