@@ -2,6 +2,7 @@ import unittest
 
 from src.fact_providers.YahooFinanceStockInfoProvider import YahooFinanceStockInfoProvider
 from tests.test_fixtures.FakeStockFromFileProvider import FakeStockFromFileProvider
+from tests.test_fixtures.MessageInterceptor import MessageInterceptor
 from tests.test_fixtures.SpyCommandLinePrinter import SpyCommandLinePrinter
 from src.jobs.SyncStockFactsFromSource import SyncStockFactsFromSource
 from model.Stock import Stock
@@ -9,16 +10,6 @@ from model.StockInfoReport import StockInfoReport
 from model.command_line.CommandLineContext import CommandLineContext
 from tests.test_fixtures.SpyStockFromFileProvider import SpyStockFromFileProvider
 from tests.test_fixtures.SpyStockInformationProvider import SpyStockInformationProvider
-
-
-class MessageInterceptor:
-    _intercepted_message: str = ""
-
-    def get_intercepted_message(self):
-        return self._intercepted_message
-
-    def set_intercepted_message(self, message: str):
-        self._intercepted_message = message
 
 
 class TestSyncStockFactsFromSource(unittest.TestCase):

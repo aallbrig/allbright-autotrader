@@ -1,11 +1,27 @@
 import unittest
 
+from tempfile import NamedTemporaryFile
 from tests.test_fixtures.SpyCommandLinePrinter import SpyCommandLinePrinter
+from tests.test_fixtures.MessageInterceptor import MessageInterceptor
 from main import build_command_registry
 from model.command_line.CommandLineApp import CommandLineApp
 
 
 class AcceptanceTests(unittest.TestCase):
+    def test_command_line_tool_can_generate_stock_report_from_input_file(self):
+        message_interceptor = MessageInterceptor()
+        sut = CommandLineApp(SpyCommandLinePrinter(message_interceptor.set_intercepted_message),
+                             build_command_registry())
+        expected_message = "Stock: TSLA"
+        test_input_file = NamedTemporaryFile()
+        with open(test_input_file.name, 'w') as f:
+            f.write("TSLA\n")
+
+        sut.run(['job-sync-facts', '--input-file', test_input_file.name])
+        test_input_file.close()
+
+        self.assertEqual(expected_message, message_interceptor.get_intercepted_message())
+
     def test_command_line_tool_can_generate_stock_report(self):
         sut = CommandLineApp(SpyCommandLinePrinter(lambda: None), build_command_registry())
         expected_exit_code = 0
