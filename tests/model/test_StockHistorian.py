@@ -2,8 +2,8 @@ import unittest
 from datetime import date
 from datetime import timedelta
 
-from src.model.Stock import Stock
-from src.model.StockHistorian import StockHistorian
+from model.Stock import Stock
+from model.StockHistorian import StockHistorian
 
 
 class TestStockHistorian(unittest.TestCase):

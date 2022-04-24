@@ -1,9 +1,15 @@
-from src.model.Stock import Stock
-from src.model.StockInfoReport import StockInfoReport
-from src.model.fact_providers.StockInformationProvider import StockInformationProvider
+from datetime import date
+
+from model.Stock import Stock
+from model.StockDaySummary import StockDaySummary
+from model.StockInfoReport import StockInfoReport
+from model.fact_providers.StockInformationProvider import StockInformationProvider
 
 
 class TestThirdPartyStockInfoProvider(StockInformationProvider):
+    def retrieve_historic_data(self, stock: Stock, start_date: date, end_date: date) -> list[StockDaySummary]:
+        pass
+
     stock_info_reports: list[StockInfoReport]
 
     def retrieve_stock_info(self) -> list[StockInfoReport]:

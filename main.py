@@ -4,13 +4,13 @@ from __future__ import (absolute_import, division, print_function,
 
 import sys
 
-from src.model.command_line.CommandLinePrinter import CommandLinePrinter
-from src.model.command_line.CommandLineApp import CommandLineApp
+from model.command_line.CommandLinePrinter import CommandLinePrinter
+from model.command_line.CommandLineApp import CommandLineApp
 from src.fact_providers.YahooFinanceStockInfoProvider import YahooFinanceStockInfoProvider
 from src.jobs.SyncStockFactsFromSource import SyncStockFactsFromSource
 from src.jobs.ExecuteTrading import ExecuteTrading
 from src.jobs.SimulateHistoricTrading import SimulateHistoricTrading
-from src.model.command_line.CommandRegistry import CommandRegistry
+from model.command_line.CommandRegistry import CommandRegistry
 
 
 def build_fact_producer_command():

@@ -2,10 +2,10 @@ import unittest
 from typing import Callable
 
 from tests.test_fixtures.TestCommandLinePrinter import TestCommandLinePrinter
-from src.model.command_line.CommandLineApp import CommandLineApp
-from src.model.command_line.CommandLineCommand import CommandLineCommand
-from src.model.command_line.CommandLineContext import CommandLineContext
-from src.model.command_line.CommandRegistry import CommandRegistry
+from model.command_line.CommandLineApp import CommandLineApp
+from model.command_line.CommandLineCommand import CommandLineCommand
+from model.command_line.CommandLineContext import CommandLineContext
+from model.command_line.CommandRegistry import CommandRegistry
 
 
 class TestCommandLineCommand(CommandLineCommand):

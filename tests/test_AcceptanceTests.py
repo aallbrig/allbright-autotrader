@@ -2,7 +2,7 @@ import unittest
 
 from tests.test_fixtures.TestCommandLinePrinter import TestCommandLinePrinter
 from main import build_command_registry
-from src.model.command_line.CommandLineApp import CommandLineApp
+from model.command_line.CommandLineApp import CommandLineApp
 
 
 class AcceptanceTests(unittest.TestCase):

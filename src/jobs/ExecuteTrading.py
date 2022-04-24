@@ -1,4 +1,4 @@
-from src.model.command_line.CommandLineCommand import CommandLineCommand
+from model.command_line.CommandLineCommand import CommandLineCommand
 
 
 class ExecuteTrading(CommandLineCommand):

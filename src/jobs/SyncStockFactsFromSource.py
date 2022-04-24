@@ -1,9 +1,9 @@
 import getopt
 
-from src.model.command_line.CommandLineCommand import CommandLineCommand
-from src.model.FinancialFactProvider import FinancialFactProvider
-from src.model.Stock import Stock
-from src.model.fact_providers.StockInformationProvider import StockInformationProvider
+from model.command_line.CommandLineCommand import CommandLineCommand
+from model.FinancialFactProvider import FinancialFactProvider
+from model.Stock import Stock
+from model.fact_providers import StockInformationProvider
 
 
 class SyncStockFactsFromSource(CommandLineCommand):

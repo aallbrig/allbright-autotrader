@@ -1,6 +1,6 @@
 import unittest
 
-from src.model.Stock import Stock
+from model.Stock import Stock
 from src.fact_providers.YahooFinanceStockInfoProvider import YahooFinanceStockInfoProvider
 
 

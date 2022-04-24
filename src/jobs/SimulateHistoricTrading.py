@@ -1,6 +1,6 @@
 import backtrader as bt
 
-from src.model.command_line.CommandLineCommand import CommandLineCommand
+from model.command_line.CommandLineCommand import CommandLineCommand
 
 
 class SimulateHistoricTrading(CommandLineCommand):

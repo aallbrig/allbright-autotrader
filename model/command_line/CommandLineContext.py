@@ -1,4 +1,4 @@
-from src.model.command_line.CommandLinePrinter import CommandLinePrinter
+from model.command_line.CommandLinePrinter import CommandLinePrinter
 
 
 class CommandLineContext:

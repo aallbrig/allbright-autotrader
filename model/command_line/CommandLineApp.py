@@ -1,9 +1,9 @@
 from typing import Optional
 
-from src.model.command_line.CommandLinePrinter import CommandLinePrinter
-from src.model.command_line.CommandLineCommand import CommandLineCommand
-from src.model.command_line.CommandLineContext import CommandLineContext
-from src.model.command_line.CommandRegistry import CommandRegistry
+from model.command_line.CommandLinePrinter import CommandLinePrinter
+from model.command_line.CommandLineCommand import CommandLineCommand
+from model.command_line.CommandLineContext import CommandLineContext
+from model.command_line.CommandRegistry import CommandRegistry
 
 
 class CommandLineApp:

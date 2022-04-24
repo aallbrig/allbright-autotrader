@@ -1,10 +1,10 @@
 from datetime import date
 
-from src.model.Stock import Stock
+from model.Stock import Stock
 
 
-from src.model.StockDaySummary import StockDaySummary
-from src.model.StockInfoReport import StockInfoReport
+from model.StockDaySummary import StockDaySummary
+from model.StockInfoReport import StockInfoReport
 
 
 class StockInformationProvider:

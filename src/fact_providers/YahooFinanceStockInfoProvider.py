@@ -2,10 +2,10 @@ from datetime import date
 
 from yfinance import Ticker
 
-from src.model.Stock import Stock
-from src.model.StockDaySummary import StockDaySummary
-from src.model.StockInfoReport import StockInfoReport
-from src.model.fact_providers.StockInformationProvider import StockInformationProvider
+from model.Stock import Stock
+from model.StockDaySummary import StockDaySummary
+from model.StockInfoReport import StockInfoReport
+from model.fact_providers.StockInformationProvider import StockInformationProvider
 import yfinance as yf
 
 

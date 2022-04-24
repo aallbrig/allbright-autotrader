@@ -1,8 +1,8 @@
 import unittest
 
-from src.model.FinancialFactProvider import FinancialFactProvider
-from src.model.Stock import Stock
-from src.model.StockInfoReport import StockInfoReport
+from model.FinancialFactProvider import FinancialFactProvider
+from model.Stock import Stock
+from model.StockInfoReport import StockInfoReport
 from tests.test_fixtures.ThirdPartyStockInfoProvider import TestThirdPartyStockInfoProvider
 
 

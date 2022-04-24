@@ -1,6 +1,6 @@
 from typing import Callable, Optional
 
-from src.model.command_line.CommandLineCommand import CommandLineCommand
+from model.command_line.CommandLineCommand import CommandLineCommand
 
 
 class CommandRegistry:

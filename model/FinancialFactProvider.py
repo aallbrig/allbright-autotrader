@@ -1,5 +1,5 @@
-from src.model.StockInfoReport import StockInfoReport
-from src.model.fact_providers.StockInformationProvider import StockInformationProvider
+from model.StockInfoReport import StockInfoReport
+from model.fact_providers.StockInformationProvider import StockInformationProvider
 
 
 class FinancialFactProvider:

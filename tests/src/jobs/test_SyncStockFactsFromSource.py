@@ -2,9 +2,9 @@ import unittest
 
 from tests.test_fixtures.TestCommandLinePrinter import TestCommandLinePrinter
 from src.jobs.SyncStockFactsFromSource import SyncStockFactsFromSource
-from src.model.Stock import Stock
-from src.model.StockInfoReport import StockInfoReport
-from src.model.command_line.CommandLineContext import CommandLineContext
+from model.Stock import Stock
+from model.StockInfoReport import StockInfoReport
+from model.command_line.CommandLineContext import CommandLineContext
 from tests.test_fixtures.ThirdPartyStockInfoProvider import TestThirdPartyStockInfoProvider
 
 

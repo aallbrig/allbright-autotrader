@@ -1,4 +1,4 @@
-from src.model.Stock import Stock
+from model.Stock import Stock
 
 
 class StockInfoReport:
