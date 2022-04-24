@@ -29,7 +29,10 @@ class TestSyncStockFactsFromSource(unittest.TestCase):
 
     def test_getting_stocks_picks_from_file(self):
         expected_output_message = 'Stock: TSLA'
-        sut = SyncStockFactsFromSource(YahooFinanceStockInfoProvider(), SpyStockFromFileProvider(lambda: [Stock('TSLA')]))
+        sut = SyncStockFactsFromSource(YahooFinanceStockInfoProvider(), SpyStockFromFileProvider(
+            lambda: [Stock('TSLA')],
+            lambda: True
+        ))
         message_interceptor = MessageInterceptor()
         test_command_line = SpyCommandLinePrinter(message_interceptor.set_intercepted_message)
         test_argv = []

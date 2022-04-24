@@ -4,6 +4,10 @@ from model.Stock import Stock
 from model.fact_providers.StockFromFileProvider import StockFromFileProvider
 
 
+def _parse_line_strategy(line):
+    return line.strip()
+
+
 class StocksFromPersonalTextFile(StockFromFileProvider):
     input_file = None
 
@@ -21,12 +25,13 @@ class StocksFromPersonalTextFile(StockFromFileProvider):
                 self.input_file = arg
 
     def get_stocks(self) -> list[Stock]:
-        if self.input_file is not None:
+        if self.is_valid():
             with open(self.input_file) as f:
-                stocks = [Stock(self._parse_line_strategy(line)) for line in f.readlines()]
+                stocks = [Stock(_parse_line_strategy(line)) for line in f.readlines()]
                 return stocks
         else:
             return []
 
-    def _parse_line_strategy(self, line):
-        return line.strip()
+    def is_valid(self):
+        return self.input_file is not None
+

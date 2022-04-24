@@ -22,9 +22,9 @@ class AcceptanceTests(unittest.TestCase):
 
         self.assertEqual(expected_message, message_interceptor.get_intercepted_message())
 
-    def test_command_line_tool_can_generate_stock_report(self):
+    def test_command_line_tool_requires_input_file(self):
         sut = CommandLineApp(SpyCommandLinePrinter(lambda: None), build_command_registry())
-        expected_exit_code = 0
+        expected_exit_code = 1
 
         exit_code = sut.run(['job-sync-facts'])
 

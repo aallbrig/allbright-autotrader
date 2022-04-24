@@ -12,9 +12,9 @@ class SyncStockFactsFromSource(CommandLineCommand):
         self.file_provider = file_provider
 
     def Execute(self, context):
-        argv = context.argv
-
-        self.file_provider.parse_args(argv)
+        self.file_provider.parse_args(context.argv)
+        if not self.file_provider.is_valid():
+            return 1
         stocks = self.file_provider.get_stocks()
         valid_stocks = stocks
         # check if there is a greater than 0 length of valid target stock

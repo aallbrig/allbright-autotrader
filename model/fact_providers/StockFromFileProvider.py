@@ -9,3 +9,6 @@ class StockFromFileProvider(StockProvider):
     def parse_args(self, argv: list[str]):
         raise NotImplementedError("Please Implement this method")
 
+    def is_valid(self) -> bool:
+        raise NotImplementedError("Please Implement this method")
+
