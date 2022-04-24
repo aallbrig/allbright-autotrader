@@ -1,9 +1,11 @@
+from model.reports.StockDaySummary import StockDaySummary
 from model.reports.StockNowSummary import StockNowSummary
 
 
 class Stock:
     _symbol: str = None
     _now_summary: StockNowSummary = None
+    _day_summaries: list[StockDaySummary] = None
 
     def __init__(self, symbol: str):
         self._symbol = symbol
@@ -23,3 +25,6 @@ class Stock:
     def _console_view(self):
         maybe_summary = f' {self._now_summary}' if self._now_summary is not None else ''
         return f'Stock: {self.symbol()}{maybe_summary}'
+
+    def set_historic_data(self, historic_day_summaries: list[StockDaySummary]):
+        self._day_summaries = historic_day_summaries

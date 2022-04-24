@@ -11,16 +11,17 @@ from model.reports.StockNowSummary import StockNowSummary
 
 
 class YahooFinanceStockInfoProvider(StockInformationProvider):
+    def map_stock_to_historic_day_summaries(self, stock: Stock, start_date: date, end_date: date) \
+            -> list[StockDaySummary]:
+        # yahoo_ticker = self._get_yahoo_ticker(stock)
+        # summary.current = yahoo_ticker.info['currentPrice']
+        return []
+
     def map_info_source_to_stock_now_summary(self, stock: Stock) -> StockNowSummary:
         summary = StockNowSummary()
         # yahoo_ticker = self._get_yahoo_ticker(stock)
         # summary.current = yahoo_ticker.info['currentPrice']
         return summary
-
-    def retrieve_historic_data(self, stock: Stock, start_date: date, end_date: date) -> list[StockDaySummary]:
-        yahoo_ticker = self._get_yahoo_ticker(stock)
-        yahoo_ticker.history(start=start_date, end=end_date)
-        return []
 
     _local_cache: dict[Stock, Ticker]
 

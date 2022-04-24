@@ -21,8 +21,13 @@ class StockInformationProvider:
         [stock_pick.set_day_summary(self.map_info_source_to_stock_now_summary(stock_pick))
          for stock_pick in self._stock_picks]
 
+    def retrieve_historic_data(self, start_date: date, end_date: date):
+        [stock_pick.set_historic_data(self.map_stock_to_historic_day_summaries(stock_pick, start_date, end_date))
+         for stock_pick in self._stock_picks]
+
     def map_info_source_to_stock_now_summary(self, stock: Stock) -> StockNowSummary:
         raise NotImplementedError("Please Implement this method")
 
-    def retrieve_historic_data(self, stock: Stock, start_date: date, end_date: date) -> list[StockDaySummary]:
+    def map_stock_to_historic_day_summaries(self, stock: Stock, start_date: date, end_date: date) \
+            -> list[StockDaySummary]:
         raise NotImplementedError("Please Implement this method")
