@@ -8,9 +8,9 @@ class YahooFinanceStockInfoProviderTests(unittest.TestCase):
     def test_provider_provides_yahoo_data(self):
         test_stocks = [Stock("TSLA")]
         sut = YahooFinanceStockInfoProvider(test_stocks)
-        results = sut.retrieve_stock_info()
+        sut.retrieve_now_summary()
 
-        self.assertEqual("TSLA", results[0].stock.symbol())
+        self.assertTrue(test_stocks[0].now_summary() is not None)
 
 
 if __name__ == '__main__':

@@ -7,7 +7,7 @@ class FakeStockFromFileProvider(StockFromFileProvider):
         return True
 
     def get_stocks(self) -> list[Stock]:
-        pass
+        return []
 
     def parse_args(self, argv: list[str]):
         pass

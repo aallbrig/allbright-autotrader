@@ -21,8 +21,8 @@ class SyncStockFactsFromSource(CommandLineCommand):
         # if not, return status code 1
         # else if length(valid_target_stocks) is greater than 1, proceed with logic
         self.fact_provider.set_stock_picks(valid_stocks)
-        results = self.fact_provider.retrieve_stock_info()
+        self.fact_provider.retrieve_now_summary()
 
-        [context.command_line.print(f'{stock_info_report}') for stock_info_report in results]
+        [context.command_line.print(f'{stock}') for stock in stocks]
 
         return 0

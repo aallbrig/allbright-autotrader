@@ -12,7 +12,7 @@ class AcceptanceTests(unittest.TestCase):
         message_interceptor = MessageInterceptor()
         sut = CommandLineApp(SpyCommandLinePrinter(message_interceptor.set_intercepted_message),
                              build_command_registry())
-        expected_message = "Stock: TSLA"
+        expected_message = "Stock: TSLA Current Price: 0.0"
         test_input_file = NamedTemporaryFile()
         with open(test_input_file.name, 'w') as f:
             f.write("TSLA\n")

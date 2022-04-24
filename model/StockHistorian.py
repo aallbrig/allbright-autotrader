@@ -1,7 +1,7 @@
 from datetime import date
 
 from model.Stock import Stock
-from model.StockDaySummary import StockDaySummary
+from model.reports.StockDaySummary import StockDaySummary
 
 
 class StockHistorian:
