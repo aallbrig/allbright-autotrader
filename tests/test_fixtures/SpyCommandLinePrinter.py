@@ -3,7 +3,7 @@ from typing import Callable
 from model.command_line.CommandLinePrinter import CommandLinePrinter
 
 
-class TestCommandLinePrinter(CommandLinePrinter):
+class SpyCommandLinePrinter(CommandLinePrinter):
     _on_print: Callable[[str], None]
 
     def __init__(self, on_print: Callable[[str], None]):

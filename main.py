@@ -6,6 +6,7 @@ import sys
 
 from model.command_line.CommandLinePrinter import CommandLinePrinter
 from model.command_line.CommandLineApp import CommandLineApp
+from src.fact_providers.StocksFromPersonalTextFile import StocksFromPersonalTextFile
 from src.fact_providers.YahooFinanceStockInfoProvider import YahooFinanceStockInfoProvider
 from src.jobs.SyncStockFactsFromSource import SyncStockFactsFromSource
 from src.jobs.ExecuteTrading import ExecuteTrading
@@ -15,7 +16,8 @@ from model.command_line.CommandRegistry import CommandRegistry
 
 def build_fact_producer_command():
     yahoo_finance_provider = YahooFinanceStockInfoProvider()
-    return SyncStockFactsFromSource(yahoo_finance_provider)
+    personal_file_provider = StocksFromPersonalTextFile()
+    return SyncStockFactsFromSource(yahoo_finance_provider, personal_file_provider)
 
 
 def build_simulator_command():

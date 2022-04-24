@@ -6,7 +6,7 @@ from model.StockInfoReport import StockInfoReport
 from model.fact_providers.StockInformationProvider import StockInformationProvider
 
 
-class TestThirdPartyStockInfoProvider(StockInformationProvider):
+class SpyStockInformationProvider(StockInformationProvider):
     def retrieve_historic_data(self, stock: Stock, start_date: date, end_date: date) -> list[StockDaySummary]:
         pass
 

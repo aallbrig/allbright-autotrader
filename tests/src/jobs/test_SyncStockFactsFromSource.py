@@ -1,38 +1,53 @@
 import unittest
 
-from tests.test_fixtures.TestCommandLinePrinter import TestCommandLinePrinter
+from src.fact_providers.YahooFinanceStockInfoProvider import YahooFinanceStockInfoProvider
+from tests.test_fixtures.FakeStockFromFileProvider import FakeStockFromFileProvider
+from tests.test_fixtures.SpyCommandLinePrinter import SpyCommandLinePrinter
 from src.jobs.SyncStockFactsFromSource import SyncStockFactsFromSource
 from model.Stock import Stock
 from model.StockInfoReport import StockInfoReport
 from model.command_line.CommandLineContext import CommandLineContext
-from tests.test_fixtures.ThirdPartyStockInfoProvider import TestThirdPartyStockInfoProvider
+from tests.test_fixtures.SpyStockFromFileProvider import SpyStockFromFileProvider
+from tests.test_fixtures.SpyStockInformationProvider import SpyStockInformationProvider
+
+
+class MessageInterceptor:
+    _intercepted_message: str = ""
+
+    def get_intercepted_message(self):
+        return self._intercepted_message
+
+    def set_intercepted_message(self, message: str):
+        self._intercepted_message = message
 
 
 class TestSyncStockFactsFromSource(unittest.TestCase):
-    # TODO: how can I do what I want to do here
-    #  without maintaining state in the class?
-    # TODO: delete
-    _intercepted_message: str
-
-    # TODO: delete
-    def _get_intercepted_message(self):
-        return self._intercepted_message
-
-    # TODO: delete
-    def _set_intercepted_message(self, message: str):
-        self._intercepted_message = message
 
     def test_message_output_when_TSLA_passed_in(self):
         expected_output_message = 'Stock: TSLA'
         test_input_reports = [StockInfoReport(Stock('TSLA'))]
-        test_fact_provider = TestThirdPartyStockInfoProvider(stock_info_reports=test_input_reports)
-        test_command_line = TestCommandLinePrinter(self._set_intercepted_message)
+        test_fact_provider = SpyStockInformationProvider(stock_info_reports=test_input_reports)
+        sut = SyncStockFactsFromSource(test_fact_provider, FakeStockFromFileProvider())
+        message_interceptor = MessageInterceptor()
+        test_command_line = SpyCommandLinePrinter(message_interceptor.set_intercepted_message)
         test_argv = []
         test_context = CommandLineContext(test_command_line, test_argv)
-        sut = SyncStockFactsFromSource(test_fact_provider)
 
         sut.Execute(test_context)
-        self.assertEqual(expected_output_message, self._get_intercepted_message())
+        self.assertEqual(expected_output_message, message_interceptor.get_intercepted_message())
+
+    def test_getting_stocks_picks_from_file(self):
+        expected_output_message = 'Stock: TSLA'
+        sut = SyncStockFactsFromSource(YahooFinanceStockInfoProvider(), SpyStockFromFileProvider(lambda: [Stock('TSLA')]))
+        message_interceptor = MessageInterceptor()
+        test_command_line = SpyCommandLinePrinter(message_interceptor.set_intercepted_message)
+        test_argv = []
+        test_context = CommandLineContext(test_command_line, test_argv)
+
+        sut.Execute(test_context)
+
+        self.assertEqual(expected_output_message, message_interceptor.get_intercepted_message())
+        pass
 
 
 if __name__ == '__main__':

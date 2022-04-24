@@ -1,7 +1,7 @@
 import unittest
 from typing import Callable
 
-from tests.test_fixtures.TestCommandLinePrinter import TestCommandLinePrinter
+from tests.test_fixtures.SpyCommandLinePrinter import SpyCommandLinePrinter
 from model.command_line.CommandLineApp import CommandLineApp
 from model.command_line.CommandLineCommand import CommandLineCommand
 from model.command_line.CommandLineContext import CommandLineContext
@@ -33,7 +33,7 @@ class TestCommandLineApp(unittest.TestCase):
         call_tracker = CommandCalledTracker()
         test_registry = CommandRegistry()
         test_registry.set("foo", lambda: TestCommandLineCommand(lambda cxt: call_tracker.call(cxt)))
-        sut = CommandLineApp(TestCommandLinePrinter(lambda: None), test_registry)
+        sut = CommandLineApp(SpyCommandLinePrinter(lambda: None), test_registry)
 
         sut.run(["foo"])
 
