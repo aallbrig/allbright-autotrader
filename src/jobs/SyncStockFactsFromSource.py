@@ -1,5 +1,4 @@
 from model.command_line.CommandLineCommand import CommandLineCommand
-from model.FinancialFactProvider import FinancialFactProvider
 from model.fact_providers import StockInformationProvider
 from model.fact_providers.StockFromFileProvider import StockFromFileProvider
 
@@ -22,9 +21,7 @@ class SyncStockFactsFromSource(CommandLineCommand):
         # if not, return status code 1
         # else if length(valid_target_stocks) is greater than 1, proceed with logic
         self.fact_provider.set_stock_picks(valid_stocks)
-
-        fact_provider = FinancialFactProvider(self.fact_provider)
-        results = fact_provider.inform_about_stocks()
+        results = self.fact_provider.retrieve_stock_info()
 
         [context.command_line.print(f'{stock_info_report}') for stock_info_report in results]
 
