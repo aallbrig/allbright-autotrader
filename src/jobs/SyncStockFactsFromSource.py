@@ -3,14 +3,14 @@ import getopt
 from src.model.command_line.CommandLineCommand import CommandLineCommand
 from src.model.FinancialFactProvider import FinancialFactProvider
 from src.model.Stock import Stock
-from src.model.fact_providers.ThirdPartyStockInfoProvider import ThirdPartyStockInfoProvider
+from src.model.fact_providers.StockInformationProvider import StockInformationProvider
 
 
 class SyncStockFactsFromSource(CommandLineCommand):
     input_file = None
-    fact_provider: ThirdPartyStockInfoProvider
+    fact_provider: StockInformationProvider
 
-    def __init__(self, fact_provider: ThirdPartyStockInfoProvider):
+    def __init__(self, fact_provider: StockInformationProvider):
         self.fact_provider = fact_provider
 
     def Execute(self, context):

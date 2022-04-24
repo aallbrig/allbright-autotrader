@@ -1,11 +1,11 @@
 import unittest
 
-from tests._test_fixtures.TestCommandLine import TestCommandLine
+from tests.test_fixtures.TestCommandLinePrinter import TestCommandLinePrinter
 from src.jobs.SyncStockFactsFromSource import SyncStockFactsFromSource
 from src.model.Stock import Stock
 from src.model.StockInfoReport import StockInfoReport
 from src.model.command_line.CommandLineContext import CommandLineContext
-from tests._test_fixtures.ThirdPartyStockInfoProvider import TestThirdPartyStockInfoProvider
+from tests.test_fixtures.ThirdPartyStockInfoProvider import TestThirdPartyStockInfoProvider
 
 
 class TestSyncStockFactsFromSource(unittest.TestCase):
@@ -26,7 +26,7 @@ class TestSyncStockFactsFromSource(unittest.TestCase):
         expected_output_message = 'Stock: TSLA'
         test_input_reports = [StockInfoReport(Stock('TSLA'))]
         test_fact_provider = TestThirdPartyStockInfoProvider(stock_info_reports=test_input_reports)
-        test_command_line = TestCommandLine(self._set_intercepted_message)
+        test_command_line = TestCommandLinePrinter(self._set_intercepted_message)
         test_argv = []
         test_context = CommandLineContext(test_command_line, test_argv)
         sut = SyncStockFactsFromSource(test_fact_provider)

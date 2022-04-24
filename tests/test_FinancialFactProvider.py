@@ -3,7 +3,7 @@ import unittest
 from src.model.FinancialFactProvider import FinancialFactProvider
 from src.model.Stock import Stock
 from src.model.StockInfoReport import StockInfoReport
-from tests._test_fixtures.ThirdPartyStockInfoProvider import TestThirdPartyStockInfoProvider
+from tests.test_fixtures.ThirdPartyStockInfoProvider import TestThirdPartyStockInfoProvider
 
 
 class FinancialFactProviderTests(unittest.TestCase):

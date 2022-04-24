@@ -1,12 +1,20 @@
+from datetime import date
+
 from yfinance import Ticker
 
 from src.model.Stock import Stock
+from src.model.StockDaySummary import StockDaySummary
 from src.model.StockInfoReport import StockInfoReport
-from src.model.fact_providers.ThirdPartyStockInfoProvider import ThirdPartyStockInfoProvider
+from src.model.fact_providers.StockInformationProvider import StockInformationProvider
 import yfinance as yf
 
 
-class YahooFinanceStockInfoProvider(ThirdPartyStockInfoProvider):
+class YahooFinanceStockInfoProvider(StockInformationProvider):
+    def retrieve_historic_data(self, stock: Stock, start_date: date, end_date: date) -> list[StockDaySummary]:
+        ticker = self._local_cache[stock] if stock in self._local_cache.keys() else self._map_stock_to_yahoo_ticker(stock)
+        ticker.history(start=start_date, end=end_date)
+        pass
+
     _local_cache: dict[Stock, Ticker]
     _ticker_to_stock_cache: dict[Ticker, Stock]
 
@@ -27,6 +35,7 @@ class YahooFinanceStockInfoProvider(ThirdPartyStockInfoProvider):
     def _map_stock_to_stock_info_report(self, yahoo_data: list[Ticker]) -> list[StockInfoReport]:
         return [self._generate_stock_info_report(yahoo_stock_data) for yahoo_stock_data in yahoo_data]
 
+    # TODO: this fn is both a command and query, which smells bad
     def _map_stock_to_yahoo_ticker(self, stock_pick: Stock) -> Ticker:
         if stock_pick not in self._local_cache.keys():
             yahoo_ticker = yf.Ticker(stock_pick.symbol())

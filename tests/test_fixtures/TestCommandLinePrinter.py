@@ -1,9 +1,9 @@
 from typing import Callable
 
-from src.model.command_line.CommandLine import CommandLine
+from src.model.command_line.CommandLinePrinter import CommandLinePrinter
 
 
-class TestCommandLine(CommandLine):
+class TestCommandLinePrinter(CommandLinePrinter):
     _on_print: Callable[[str], None]
 
     def __init__(self, on_print: Callable[[str], None]):

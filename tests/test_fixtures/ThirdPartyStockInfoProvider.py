@@ -1,9 +1,9 @@
 from src.model.Stock import Stock
 from src.model.StockInfoReport import StockInfoReport
-from src.model.fact_providers.ThirdPartyStockInfoProvider import ThirdPartyStockInfoProvider
+from src.model.fact_providers.StockInformationProvider import StockInformationProvider
 
 
-class TestThirdPartyStockInfoProvider(ThirdPartyStockInfoProvider):
+class TestThirdPartyStockInfoProvider(StockInformationProvider):
     stock_info_reports: list[StockInfoReport]
 
     def retrieve_stock_info(self) -> list[StockInfoReport]:
