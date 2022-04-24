@@ -11,9 +11,10 @@ import yfinance as yf
 
 class YahooFinanceStockInfoProvider(StockInformationProvider):
     def retrieve_historic_data(self, stock: Stock, start_date: date, end_date: date) -> list[StockDaySummary]:
-        ticker = self._local_cache[stock] if stock in self._local_cache.keys() else self._map_stock_to_yahoo_ticker(stock)
-        ticker.history(start=start_date, end=end_date)
-        pass
+        ticker = self._local_cache[stock] \
+            if stock in self._local_cache.keys() else self._map_stock_to_yahoo_ticker(stock)
+        results = ticker.history(start=start_date, end=end_date)
+        return []
 
     _local_cache: dict[Stock, Ticker]
     _ticker_to_stock_cache: dict[Ticker, Stock]

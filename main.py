@@ -38,14 +38,14 @@ def build_command_registry() -> CommandRegistry:
     return command_registry
 
 
-class Printer(CommandLinePrinter):
+class ConsolePrinter(CommandLinePrinter):
 
     def print(self, message: str):
         print(message)
 
 
 def main(argv):
-    app = CommandLineApp(Printer(), build_command_registry())
+    app = CommandLineApp(ConsolePrinter(), build_command_registry())
     exit_code = app.run(argv)
     sys.exit(exit_code)
 
