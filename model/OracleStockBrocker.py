@@ -1,0 +1,2 @@
+class OracleStockBroker:
+    pass
